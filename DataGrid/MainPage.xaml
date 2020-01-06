@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="DataGrid.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataGrid"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel x:Name="CustomPrintContainer">
+        <Button Click="Button_Click">click</Button>
+        <ScrollViewer>
+        <controls:DataGrid  x:Name="dataGrid1" 
+    Height="600" Margin="12"
+    AutoGenerateColumns="False"
+    ItemsSource="{x:Bind Customers,Mode=OneWay}">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn 
+            Header="First Name" 
+            Width="SizeToHeader"
+            Binding="{Binding FirstName}" 
+            FontSize="20" />
+                <controls:DataGridTextColumn 
+            Header="Last Name" 
+            Width="SizeToCells"
+            Binding="{Binding LastName}" 
+            FontSize="20" />
+                <controls:DataGridTextColumn 
+            Header="Address"
+            Width="150"
+            Binding="{Binding Address}" >
+                    <controls:DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </controls:DataGridTextColumn.ElementStyle>
+                    <controls:DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Foreground" Value="Blue"/>
+                        </Style>
+                    </controls:DataGridTextColumn.EditingElementStyle>
+                </controls:DataGridTextColumn>
+                <controls:DataGridCheckBoxColumn 
+            Header="New?" 
+            Width="40"
+            Binding="{Binding IsNew}" />
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+        </ScrollViewer>
+    </StackPanel>
+</Page>
